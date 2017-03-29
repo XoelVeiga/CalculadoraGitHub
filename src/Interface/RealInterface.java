@@ -1,26 +1,27 @@
 package Interface;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
+import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class RealInterface {
 
 	private JFrame frame;
 	private JTextField Result;
 	private JTextField Oper;
-
+	float num1N,num2N,resul;//To set data
+	float[] num1=new float[38];//Data collection
+	float[] num2=new float[38];//Data collection
 	/**
 	 * Launch the application.
 	 */
@@ -48,6 +49,7 @@ public class RealInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//TODO Set all event handler and the things it have to do with var declarated on class
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +102,8 @@ public class RealInterface {
 		nums.setLayout(gbl_nums);
 		
 		JButton btn7 = new JButton("7");
+		btn7.addMouseListener(new MouseAdapter() {
+		});
 		GridBagConstraints gbc_btn7 = new GridBagConstraints();
 		gbc_btn7.fill = GridBagConstraints.BOTH;
 		gbc_btn7.insets = new Insets(0, 0, 5, 5);
