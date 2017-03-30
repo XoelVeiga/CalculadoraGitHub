@@ -16,9 +16,10 @@ import javax.swing.JPanel;
 public class RealInterface {
 
 	private JFrame frame;
-	float num1N, num2N, resul;// To set data
+	float resul = 0;
+	float num1N, num2N;// To set data
 	String num1, num2, oper;// This will be setted by operation
-	String operation="";
+	String operation = "";
 
 	/**
 	 * Launch the application.
@@ -63,7 +64,7 @@ public class RealInterface {
 		JLabel lblOper = new JLabel();// Operation
 		Results.add(lblOper, BorderLayout.NORTH);
 
-		JLabel lblResul = new JLabel(getResul());// Result
+		JLabel lblResul = new JLabel();// Result
 		Results.add(lblResul, BorderLayout.SOUTH);
 
 		JPanel numOper = new JPanel();
@@ -82,7 +83,7 @@ public class RealInterface {
 			public void mouseClicked(MouseEvent e) {
 				operation = operation + "/";
 				lblOper.setText(operation);
-				
+
 			}
 		});
 		operations.add(btnDiv);
@@ -93,7 +94,7 @@ public class RealInterface {
 			public void mouseClicked(MouseEvent e) {
 				operation = operation + "*";
 				lblOper.setText(operation);
-				
+
 			}
 		});
 		operations.add(btnMul);
@@ -122,7 +123,9 @@ public class RealInterface {
 		btnResult.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO put operation on bot label
+				lblResul.setText(getResul());
+				operation = "";
+				lblOper.setText(operation);
 			}
 		});
 		operations.add(btnResult);
@@ -318,14 +321,38 @@ public class RealInterface {
 	}
 
 	public String getResul() {
-		return Double.toString(doResul(operation));
+		return String.valueOf(doResul(operation));
 
 	}
-	public float doResul(String operation){
-		String[] a=new String[];
-		operation.split("/");
+
+	public float doResul(String operation) {
+		String[] a = new String[2];
+		a = operation.split("*");
+		if (a.length == 2) {
+			num1N = Integer.parseInt(a[0]);
+			num2N = Integer.parseInt(a[1]);
+			resul = num1N * num2N;
+		}
+		a = operation.split("/");
+		if (a.length == 2) {
+			num1N = Integer.parseInt(a[0]);
+			num2N = Integer.parseInt(a[1]);
+			resul = num1N / num2N;
+		}
+
+		a = operation.split("-");
+		if (a.length == 2) {
+			num1N = Integer.parseInt(a[0]);
+			num2N = Integer.parseInt(a[1]);
+			resul = num1N - num2N;
+		}
+		a = operation.split("+");
+		if (a.length == 2) {
+			num1N = Integer.parseInt(a[0]);
+			num2N = Integer.parseInt(a[1]);
+			resul = num1N + num2N;
+		}
 		return resul;
 	}
-	
 
 }
