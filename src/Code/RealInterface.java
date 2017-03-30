@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class RealInterface {
 
@@ -62,9 +63,11 @@ public class RealInterface {
 		Results.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblOper = new JLabel();// Operation
+		lblOper.setHorizontalAlignment(SwingConstants.RIGHT);
 		Results.add(lblOper, BorderLayout.NORTH);
 
 		JLabel lblResul = new JLabel();// Result
+		lblResul.setHorizontalAlignment(SwingConstants.RIGHT);
 		Results.add(lblResul, BorderLayout.SOUTH);
 
 		JPanel numOper = new JPanel();
@@ -124,8 +127,8 @@ public class RealInterface {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				lblResul.setText(getResul());
-				operation = "";
 				lblOper.setText(operation);
+				operation="";
 			}
 		});
 		operations.add(btnResult);
@@ -327,26 +330,26 @@ public class RealInterface {
 
 	public float doResul(String operation) {
 		String[] a = new String[2];
-		a = operation.split("*");
+		a = operation.split("[*]");
 		if (a.length == 2) {
 			num1N = Integer.parseInt(a[0]);
 			num2N = Integer.parseInt(a[1]);
 			resul = num1N * num2N;
 		}
-		a = operation.split("/");
+		a = operation.split("[/]");
 		if (a.length == 2) {
 			num1N = Integer.parseInt(a[0]);
 			num2N = Integer.parseInt(a[1]);
 			resul = num1N / num2N;
 		}
 
-		a = operation.split("-");
+		a = operation.split("[-]");
 		if (a.length == 2) {
 			num1N = Integer.parseInt(a[0]);
 			num2N = Integer.parseInt(a[1]);
 			resul = num1N - num2N;
 		}
-		a = operation.split("+");
+		a = operation.split("[+]");
 		if (a.length == 2) {
 			num1N = Integer.parseInt(a[0]);
 			num2N = Integer.parseInt(a[1]);
