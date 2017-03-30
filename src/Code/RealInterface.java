@@ -61,14 +61,29 @@ public class RealInterface {
 		JPanel Results = new JPanel();
 		frame.getContentPane().add(Results, BorderLayout.SOUTH);
 		Results.setLayout(new BorderLayout(0, 0));
-
-		JLabel lblOper = new JLabel();// Operation
-		lblOper.setHorizontalAlignment(SwingConstants.RIGHT);
-		Results.add(lblOper, BorderLayout.NORTH);
-
-		JLabel lblResul = new JLabel();// Result
-		lblResul.setHorizontalAlignment(SwingConstants.RIGHT);
-		Results.add(lblResul, BorderLayout.SOUTH);
+		
+		JPanel panelOper = new JPanel();
+		Results.add(panelOper, BorderLayout.NORTH);
+				panelOper.setLayout(new BorderLayout(0, 0));
+				
+				JLabel lblOperTxt = new JLabel("Operations");
+				panelOper.add(lblOperTxt, BorderLayout.WEST);
+		
+				JLabel lblOper = new JLabel();// Operation
+				panelOper.add(lblOper);
+				lblOper.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JPanel panelResul = new JPanel();
+		Results.add(panelResul, BorderLayout.SOUTH);
+				panelResul.setLayout(new BorderLayout(0, 0));
+				
+				JLabel lblResultTxt = new JLabel("Result");
+				lblResultTxt.setHorizontalAlignment(SwingConstants.LEFT);
+				panelResul.add(lblResultTxt, BorderLayout.WEST);
+		
+				JLabel lblResul = new JLabel();// Result
+				panelResul.add(lblResul);
+				lblResul.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		JPanel numOper = new JPanel();
 		frame.getContentPane().add(numOper, BorderLayout.CENTER);
@@ -332,27 +347,27 @@ public class RealInterface {
 		String[] a = new String[2];
 		a = operation.split("[*]");
 		if (a.length == 2) {
-			num1N = Integer.parseInt(a[0]);
-			num2N = Integer.parseInt(a[1]);
+			num1N = Float.parseFloat(a[0]);
+			num2N = Float.parseFloat(a[1]);
 			resul = num1N * num2N;
 		}
 		a = operation.split("[/]");
 		if (a.length == 2) {
-			num1N = Integer.parseInt(a[0]);
-			num2N = Integer.parseInt(a[1]);
+			num1N = Float.parseFloat(a[0]);
+			num2N = Float.parseFloat(a[1]);
 			resul = num1N / num2N;
 		}
 
 		a = operation.split("[-]");
 		if (a.length == 2) {
-			num1N = Integer.parseInt(a[0]);
-			num2N = Integer.parseInt(a[1]);
+			num1N = Float.parseFloat(a[0]);
+			num2N = Float.parseFloat(a[1]);
 			resul = num1N - num2N;
 		}
 		a = operation.split("[+]");
 		if (a.length == 2) {
-			num1N = Integer.parseInt(a[0]);
-			num2N = Integer.parseInt(a[1]);
+			num1N = Float.parseFloat(a[0]);
+			num2N = Float.parseFloat(a[1]);
 			resul = num1N + num2N;
 		}
 		return resul;
