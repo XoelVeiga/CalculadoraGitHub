@@ -55,11 +55,12 @@ public class RealInterface {
 		// TODO Set all event handler and the things it have to do with var
 		// declarated on class
 		frmCalculator = new JFrame();
+		frmCalculator.setResizable(false);
 		frmCalculator.setTitle("Calculator\r\n");
 		frmCalculator.setBounds(100, 100, 450, 300);
 		frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCalculator.getContentPane().setLayout(new BorderLayout(0, 0));
-
+frmCalculator.setSize(431, 422);
 		JPanel Results = new JPanel();
 		frmCalculator.getContentPane().add(Results, BorderLayout.SOUTH);
 		Results.setLayout(new BorderLayout(0, 0));
@@ -395,7 +396,7 @@ public class RealInterface {
 			resul = num1N - num2N;
 		}
 		a = operation.split("[+]");
-		char car3=a[0].charAt(0);
+		char car3=a[0].charAt(1);
 			if(car3==' '){
 				a[0]=Float.toString(resul);
 			}
