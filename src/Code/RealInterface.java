@@ -13,10 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.Window.Type;
 
 public class RealInterface {
 
-	private JFrame frame;
+	private JFrame frmCalculator;
 	float resul = 0;
 	float num1N, num2N;// To set data
 	String num1, num2, oper;// This will be setted by operation
@@ -31,7 +32,7 @@ public class RealInterface {
 				try {
 
 					RealInterface window = new RealInterface();
-					window.frame.setVisible(true);
+					window.frmCalculator.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,13 +54,14 @@ public class RealInterface {
 	private void initialize() {
 		// TODO Set all event handler and the things it have to do with var
 		// declarated on class
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmCalculator = new JFrame();
+		frmCalculator.setTitle("Calculator\r\n");
+		frmCalculator.setBounds(100, 100, 450, 300);
+		frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCalculator.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel Results = new JPanel();
-		frame.getContentPane().add(Results, BorderLayout.SOUTH);
+		frmCalculator.getContentPane().add(Results, BorderLayout.SOUTH);
 		Results.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelOper = new JPanel();
@@ -70,6 +72,7 @@ public class RealInterface {
 				panelOper.add(lblOperTxt, BorderLayout.WEST);
 		
 				JLabel lblOper = new JLabel();// Operation
+				lblOper.setText("0");
 				panelOper.add(lblOper);
 				lblOper.setHorizontalAlignment(SwingConstants.RIGHT);
 		
@@ -82,11 +85,12 @@ public class RealInterface {
 				panelResul.add(lblResultTxt, BorderLayout.WEST);
 		
 				JLabel lblResul = new JLabel();// Result
+				lblResul.setText("0");
 				panelResul.add(lblResul);
 				lblResul.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		JPanel numOper = new JPanel();
-		frame.getContentPane().add(numOper, BorderLayout.CENTER);
+		frmCalculator.getContentPane().add(numOper, BorderLayout.CENTER);
 		numOper.setLayout(new BorderLayout(0, 0));
 
 		JPanel operations = new JPanel();
@@ -104,6 +108,18 @@ public class RealInterface {
 
 			}
 		});
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				operation ="0";
+				resul=0;
+				lblOper.setText(operation);
+				lblResul.setText("0");
+			}
+		});
+		operations.add(btnReset);
 		operations.add(btnDiv);
 
 		JButton btnMul = new JButton("*");
@@ -143,7 +159,7 @@ public class RealInterface {
 			public void mouseClicked(MouseEvent e) {
 				lblResul.setText(getResul());
 				lblOper.setText(operation);
-				operation="";
+				operation=" ";
 			}
 		});
 		operations.add(btnResult);
@@ -346,26 +362,45 @@ public class RealInterface {
 	public float doResul(String operation) {
 		String[] a = new String[2];
 		a = operation.split("[*]");
-		if (a.length == 2) {
+		char car=a[0].charAt(0);
+			if(car==' '){
+				a[0]=Float.toString(resul);
+			}
+			if (a.length == 2) {
 			num1N = Float.parseFloat(a[0]);
 			num2N = Float.parseFloat(a[1]);
 			resul = num1N * num2N;
 		}
 		a = operation.split("[/]");
+		char car1=a[0].charAt(0);
+			if(car1==' '){
+				a[0]=Float.toString(resul);
+			}
 		if (a.length == 2) {
+			
 			num1N = Float.parseFloat(a[0]);
 			num2N = Float.parseFloat(a[1]);
 			resul = num1N / num2N;
 		}
 
 		a = operation.split("[-]");
+		char car2=a[0].charAt(0);
+			if(car2==' '){
+				a[0]=Float.toString(resul);
+			}
 		if (a.length == 2) {
+			
 			num1N = Float.parseFloat(a[0]);
 			num2N = Float.parseFloat(a[1]);
 			resul = num1N - num2N;
 		}
 		a = operation.split("[+]");
+		char car3=a[0].charAt(0);
+			if(car3==' '){
+				a[0]=Float.toString(resul);
+			}
 		if (a.length == 2) {
+			
 			num1N = Float.parseFloat(a[0]);
 			num2N = Float.parseFloat(a[1]);
 			resul = num1N + num2N;
